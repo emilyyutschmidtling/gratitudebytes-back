@@ -4,11 +4,28 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var session = require('express-session');
+var passport = require('passport');
+var flash = require('connect-flash');
 
+require('dotenv').config();
+
+// create the Express app
+var app = express();
+
+// START: load local libraries
+
+// connect to the MongoDB with mongoose
+var mongoose = require('./config/database');
+
+// pass passport for configuration
+// require('.config/passport')(passport);
+
+// require routes
 var routes = require('./routes/index');
 var users = require('./routes/users');
 
-var app = express();
+// END: load local libraries
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
